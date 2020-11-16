@@ -1,5 +1,4 @@
 # NaiveBayes
 Presentation demo of Naive Bayes 
 
-
-![Uploading 120257098_144778023992595_7155496128759000783_n.jpg…]()
+![demo](https://user-images.githubusercontent.com/48592936/99273900-310d7580-285c-11eb-9026-58254961bb7d.jpg)
