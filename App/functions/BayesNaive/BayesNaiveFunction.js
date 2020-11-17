@@ -49,12 +49,28 @@ export function fromJson(jsonStr) {
 var defaultTokenizer = function (text) {
     //remove punctuation from text - remove anything that isn't a word char or a space
     var rgxPunctuation = /[^(a-zA-ZA-Яa-я0-9_)+\s]/g
-
     var sanitized = text.replace(rgxPunctuation, ' ')
-
     return sanitized.split(/\s+/)
 }
 
+
+const accentTidy = (str) => {
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, "A");
+    str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "E");
+    str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, "I");
+    str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O");
+    str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
+    str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y");
+    str = str.replace(/Đ/g, "D");
+    return str;
+}
 /**
  * Naive-Bayes Classifier
  *
@@ -132,8 +148,7 @@ class Naivebayes {
         self.totalDocuments++;
 
         //normalize the text into a word array
-        var tokens = await self.tokenizer(text);
-
+        var tokens = await self.tokenizer(accentTidy(text));
         //get a frequency count for each token in the text
         var frequencyTable = self.frequencyTable(tokens);
 
@@ -161,7 +176,6 @@ class Naivebayes {
                 //update the count of all words we have seen mapped to this category
                 self.wordCount[category] += frequencyInText;
             });
-
         return self;
     }
     /**
@@ -175,10 +189,8 @@ class Naivebayes {
             maxProbability = -Infinity,
             chosenCategory = null;
 
-        var tokens = await self.tokenizer(text);
-        console.log({ tokens })
+        var tokens = await self.tokenizer(accentTidy(text));
         var frequencyTable = self.frequencyTable(tokens);
-        console.log({ frequencyTable })
 
         //iterate thru our categories to find the one with max probability for this text
         Object
@@ -200,7 +212,7 @@ class Naivebayes {
                         var frequencyInText = frequencyTable[token];
                         var tokenProbability = self.tokenProbability(token, category);
 
-                        // console.log('token: %s category: `%s` tokenProbability: %d', token, category, tokenProbability)
+                        //console.log('token: %s category: `%s` tokenProbability: %d', token, category, tokenProbability)
                         //determine the log of the P( w | c ) for this word
                         logProbability += frequencyInText * Math.log(tokenProbability);
                     });
