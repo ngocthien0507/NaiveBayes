@@ -1,11 +1,23 @@
-﻿export const notSpam = `Kính gửi,
+﻿export const notSpam = `Tên tôi là: Nguyễn Văn A
 
-Thay mặt giảng viên, 
-kính gửi tới các thành viên thông tin về Lớp học "Các công nghệ lập trình hiện đại" ở trường Đại học Sài Gòn vào ngày 15-16 June, 2020.
-Nếu thành viên nào có nhu cầu đi học, hãy phản hồi lại mail cho mình. 
-Mình sẽ tổng hợp Danh sách các học viên và sẽ gửi lại các bạn thông tin chi tiết về Lớp học.
+Sinh ngày: 05/07/1998
 
-Trân trọng.
+Địa chỉ:  273 An Duong Vuong Street, Ward 4, District 5, Ho Chi Minh City.
+
+SĐT: 035 677 5770
+
+Qua thông tin tuyển dụng trên mạng xã hội là Facebook, 
+tôi được biết Quý công ty Ant-Tech đang có nhu cầu tuyển dụng nhân viên cho vị trí lập trình viên mobile (react native) 
+nên tôi viết đơn này mong được trở thành một phần của công ty.
+
+Tôi đã có thời gian làm việc tại một số vị trí như bên dưới đây:
+
+T4/2019 - T4/2020: Mobile developer - Fsoft Company
+T7/2020 - T12/2020: Web developer - KMS Company
+
+Tôi tin với sự ham tìm tòi và khả năng tự học hỏi cũng như sự chăm chỉ và giàu nhiệt huyết, đặc biệt dưới sự chỉ bảo của Quý công ty,
+tôi sẽ hoàn thành thật tốt công việc được giao.
+
 -- 
 Thanks and Regards
 Nguyen Van A,

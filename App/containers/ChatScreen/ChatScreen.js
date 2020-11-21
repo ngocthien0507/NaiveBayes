@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,7 +6,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import {GiftedChat} from 'react-native-gifted-chat';
+import { GiftedChat } from 'react-native-gifted-chat';
 
 // Functions
 import bayes from '../../functions/BayesNaive/BayesNaiveFunction';
@@ -31,19 +31,17 @@ const ChatScreen = () => {
     // teach it a positive phrase
 
     await classifier.learn(
-      'amazing, awesome movie!!, Yeah!!, Oh boy.',
+      'alo, da chao anh chi,tim viec lam, kiem viec lam, It, developer, lap trinh vien, mobile, react native, nodejs',
       'positive',
     );
     await classifier.learn(
-      'Sweet, this is incredibly, amazing, perfect, great!!',
+      'angular js, javascript, html , css, react, tieng anh, english, toeic, ielst',
       'positive',
     );
     await classifier.learn(trainingData.notSpam, 'positive');
 
     // teach it a negative phrase
 
-    await classifier.learn('terrible, shitty thing. Damn. Sucks!!', 'negative');
-    await classifier.learn('fuck, fucker. sucker. loser!!', 'negative');
     await classifier.learn(trainingData.spam, 'negative');
   };
 
@@ -69,8 +67,8 @@ const ChatScreen = () => {
       result === 'negative'
         ? alert('spam ít thôi :)')
         : setMessages((previousMessages) =>
-            GiftedChat.append(previousMessages, messages),
-          );
+          GiftedChat.append(previousMessages, messages),
+        );
     }
   }, []);
 
